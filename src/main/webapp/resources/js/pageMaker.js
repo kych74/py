@@ -17,7 +17,7 @@ function PageMaker(config){
 
 PageMaker.prototype.calculate = function(){
 	
-	this.firstPage = (Math.ceil(this.pageno /this.perPage) * this.perPage) +1;
+	this.firstPage = (Math.floor(this.pageno /this.perPage) * this.perPage) +1;
 	
 	if(this.firstPage !== 1){
 		this.isFirst = false;

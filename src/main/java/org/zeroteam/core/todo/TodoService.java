@@ -8,5 +8,6 @@ public interface TodoService {
 	
 	
 	public List<TodoVO> listTodo(TodoCriteria cri)throws RuntimeException;
-	
+
+	public TodoVO view(Integer bno)throws RuntimeException;
 }

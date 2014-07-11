@@ -5,7 +5,12 @@ public class TodoCriteria {
 	private int totalCount;
 	private int pageno;
 	
-	private final static int perPage = 10; 
+	private final static int perPage = 10;
+	
+	public TodoCriteria(){
+		
+		this.pageno = 1;
+	}
 	
 	public int getTotalCount() {
 		return totalCount;
@@ -20,6 +25,11 @@ public class TodoCriteria {
 	}
 
 	public void setPageno(int pageno) {
+		if(pageno <= 0){
+			this.pageno = 1;
+			return;
+		}
+		
 		this.pageno = pageno;
 	}
 	
@@ -31,7 +41,15 @@ public class TodoCriteria {
 	
 	public int getEnd(){
 		
-		return (this.pageno * perPage); 
+		return perPage; 
 	}
+
+	@Override
+	public String toString() {
+		return "TodoCriteria [totalCount=" + totalCount + ", pageno=" + pageno
+				+ "]";
+	}
+	
+	
 	
 }

@@ -55,6 +55,8 @@
                                             <sf:errors path="dueDate" cssClass="error" />
                                         </div>
                                     </div><!-- /.box-body -->
+									
+									
 
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>

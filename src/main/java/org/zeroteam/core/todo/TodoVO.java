@@ -9,7 +9,7 @@ public class TodoVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int jobno;
+	private int bno;
 	
 	@NotEmpty
 	private String title;
@@ -30,12 +30,19 @@ public class TodoVO implements Serializable{
 	}
 	
 	
-	public int getJobno() {
-		return jobno;
+	
+	public int getBno() {
+		return bno;
 	}
-	public void setJobno(int jobno) {
-		this.jobno = jobno;
+
+
+
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
+
+
+
 	public String getTitle() {
 		return title;
 	}
@@ -68,7 +75,7 @@ public class TodoVO implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "TodoVO [jobno=" + jobno + ", title=" + title + ", content="
+		return "TodoVO [bno=" + bno + ", title=" + title + ", content="
 				+ content + ", dueDate=" + dueDate + ", regDate=" + regDate
 				+ ", complete=" + complete + "]";
 	}

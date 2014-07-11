@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zeroteam.core.test.SampleMapperTest;
+import org.zeroteam.core.todo.TodoCriteria;
 import org.zeroteam.core.todo.TodoVO;
 import org.zeroteam.core.todo.mapper.TodoMapper;
 
@@ -44,7 +44,9 @@ public class TodoMapperTest {
 	@Test
 	public void testList(){
 		
-		List<TodoVO> list = mapper.listTodo(null);
+		TodoCriteria cri = new TodoCriteria();
+		
+		List<TodoVO> list = mapper.listTodo(cri);
 		
 		logger.info(list);
 		

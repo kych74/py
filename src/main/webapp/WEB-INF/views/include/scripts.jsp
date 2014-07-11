@@ -8,7 +8,6 @@
         <!-- Bootstrap -->
         <script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
-
         <!-- Sparkline -->
         <script src="/resources/js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <!-- jvectormap -->

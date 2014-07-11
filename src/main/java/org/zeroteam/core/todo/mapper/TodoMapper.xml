@@ -11,16 +11,30 @@
   
   </insert>
   
-  <select id="listTodo" resultType="org.zeroteam.core.todo.TodoVO">
+  <select id="listTodo" resultType="org.zeroteam.core.todo.TodoVO" parameterType="org.zeroteam.core.todo.TodoCriteria">
   
-  select bno, title, content, dueDate, regDate from tbl_todo
+  select bno, title, content, dueDate, regDate 
+  from tbl_todo
+  
+  order by bno desc
+  limit #{start}, #{end}
   
   </select>
   
-  <select id="listTodoCount" resultType="int">
+  <select id="readTodo" resultType="org.zeroteam.core.todo.TodoVO">
+  select bno, title, content, dueDate, regDate 
+  from tbl_todo
+  where bno = #{bno}
   
-  select count(bno) from tbl_todo
+  </select>
   
+  
+  <select id="listCountTodo" resultType="int" >
+  
+  select count(bno) 
+  from tbl_todo
+   
+ 
   </select>
 
 </mapper>  
