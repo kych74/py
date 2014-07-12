@@ -72,6 +72,8 @@ public class TodoController {
             
         }
 		
+		service.addTodo(vo);
+		
 		model.addAttribute("result", SUCCESS_REGIST);
 		model.addAttribute("nextPage","list");
 		return "redirect:/todo/actionResult";
@@ -133,7 +135,7 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute("cri")TodoCriteria cri, @RequestParam("bno") Integer bno,  Model model){
+	public ModelAndView delete(@ModelAttribute("cri")TodoCriteria cri, @RequestParam("bno") Integer bno,  RedirectAttributes redirectAttributes){
 		
 		logger.info("delete post");
 		

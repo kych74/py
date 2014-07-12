@@ -17,6 +17,8 @@ public class TodoServiceImpl implements TodoService {
 	public void addTodo(TodoVO vo) throws RuntimeException {
 		// TODO Auto-generated method stub
 		
+		mapper.createTodo(vo);
+		
 	}
 
 	@Override

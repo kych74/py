@@ -15,7 +15,7 @@
 		
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/springex" />
+		<property name="url" value="jdbc:mysql://thinker.ipdisk.co.kr:3306/springex" />
 		<property name="username" value="zerock" />
 		<property name="password" value="zerock" />
 		<property name="initialSize" value="1" />
