@@ -70,7 +70,7 @@
                                     </ul>
                                 </div><!-- /.box-body -->
                                 <div class="box-footer clearfix no-border">
-                                    <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                                    <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> <a href="/todo/regist">Add item</a></button>
                                 </div>
                             </div><!-- /.box -->
                             </form>

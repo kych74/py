@@ -50,5 +50,25 @@ public class TodoMapperTest {
 		
 		logger.info(list);
 		
+	}
+	
+	@Test
+	public void testUpdate(){
+		
+		
+		TodoVO vo  = new TodoVO();
+		vo.setBno(1);
+		vo.setTitle("new 제목");
+		vo.setContent("new 내용");
+		
+		mapper.updateTodo(vo);
+		
 	}	
+	
+	@Test
+	public void testDelete(){
+		
+		
+		mapper.deleteTodo(1);		
+	}		
 }

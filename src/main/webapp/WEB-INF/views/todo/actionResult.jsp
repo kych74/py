@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@include file="../include/header.jsp" %>
 
@@ -27,7 +28,7 @@
                         
                         	<div class="box box-success">
                                 <div class="box-header">
-                                    <h3 class="box-title">Success Box (toggle buttons)</h3>
+                                    <h3 class="box-title">${param.result }</h3>
                                     <div class="box-tools pull-right">
                                         <div class="btn-group" data-toggle="btn-toggle">
                                             <button type="button" class="btn btn-success btn-xs active" data-toggle="on">Left</button>                                            
@@ -38,7 +39,6 @@
                                 
                                 
                                 <div class="box-body">
-                                	${param.result }
                                 	
                                 	${cri.pageno }
                                 	
@@ -47,6 +47,15 @@
                                         amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
                                         berliner weisse wort chiller adjunct hydrometer alcohol aau!
                                         sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+                                        
+                                        <form id="form1" action="${param.nextPage}" method="get">
+                                            <c:if test="${not empty cri}">
+                                        	<input type='hidden' name='pageno' value='${cri.pageno }'/>
+                                        	</c:if>
+                                        	<button class="btn btn-primary" id='moveBtn' type='submit'>Move Page</button>
+                                        </form>
+                                        
+                                        
                                     </p>
                                 </div><!-- /.box-body -->
                             </div>
@@ -64,7 +73,7 @@
 <script>
 
 $(function(){
-	
+
 });
 
 </script> 

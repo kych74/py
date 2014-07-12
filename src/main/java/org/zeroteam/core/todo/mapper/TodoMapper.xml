@@ -37,4 +37,17 @@
  
   </select>
 
+  <update id="updateTodo" parameterType="org.zeroteam.core.todo.TodoVO">
+  
+  update tbl_todo set title = #{title}, content = #{content}, dueDate = #{dueDate} 
+  where bno = #{bno}
+  
+  </update>
+  
+  <delete id="deleteTodo">
+  
+  delete from tbl_todo where bno = #{bno}
+  
+  </delete>
+
 </mapper>  

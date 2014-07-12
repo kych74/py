@@ -16,8 +16,8 @@ public interface TodoMapper {
 	
 	public int listCountTodo(TodoCriteria cri)throws RuntimeException;
 	
-//	public void updateTodo(TodoVO vo)throws RuntimeException;
-//	
-//	public void deleteTodo(int bno)throws RuntimeException;
+	public void updateTodo(TodoVO vo)throws RuntimeException;
+	
+	public void deleteTodo(@Param("bno")int bno)throws RuntimeException;
 	
 }

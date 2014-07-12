@@ -5,8 +5,20 @@ import java.util.Date;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class TodoVO implements Serializable{
 
+/*CREATE TABLE `tbl_todo` (
+		  `bno` int(11) NOT NULL AUTO_INCREMENT,
+		  `title` varchar(45) NOT NULL,
+		  `content` text,
+		  `duedate` datetime DEFAULT NULL,
+		  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+		  `complete` char(1) DEFAULT 'N',
+		  PRIMARY KEY (`bno`)
+		) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+*/
+
+public class TodoVO implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 
 	private int bno;

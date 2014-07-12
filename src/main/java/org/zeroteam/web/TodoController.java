@@ -37,7 +37,7 @@ public class TodoController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 	
-	private static final int EMPTY_BNO = -1;
+
 	
 	@Inject
 	TodoService service;
@@ -52,7 +52,7 @@ public class TodoController {
 	
 	
 	@RequestMapping(value ="/regist", method = RequestMethod.GET)
-	public String regist(@ModelAttribute("todo") TodoVO vo, Model model){
+	public String regist(@ModelAttribute("todo") TodoVO vo){
 		
 		logger.info("regist get");
 		
@@ -60,7 +60,9 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value="/registAction", method = RequestMethod.POST)
-	public String registAction(@Valid  @ModelAttribute("todo")TodoVO vo,  BindingResult bindingResult, Model model){
+	public String registAction(@Valid  @ModelAttribute("todo")TodoVO vo,  
+			                   BindingResult bindingResult, 
+			                   RedirectAttributes redirectAttributes){
 		
 		logger.info("regist post");
 		
@@ -74,8 +76,7 @@ public class TodoController {
 		
 		service.addTodo(vo);
 		
-		model.addAttribute("result", SUCCESS_REGIST);
-		model.addAttribute("nextPage","list");
+		readyRedirect(redirectAttributes,null,SUCCESS_REGIST, "/todo/list" );
 		return "redirect:/todo/actionResult";
 		
 	}
@@ -90,66 +91,82 @@ public class TodoController {
 	
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void list(@ModelAttribute("cri")TodoCriteria cri,Model model){
+	public void list(@ModelAttribute("cri")TodoCriteria cri,
+					 Model model){
 		
 		logger.info("list get");
 		
 		model.addAttribute("list",service.listTodo(cri));
 		
 		logger.info(cri.toString());
-		logger.info(""+ cri.getStart()+":" + cri.getEnd());
 		
 		
 	}
 	
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
-	public String detail(@ModelAttribute("cri")TodoCriteria cri, @RequestParam("bno") Integer bno,  Model model){
+	public void detail(@ModelAttribute("cri")TodoCriteria cri, 
+			           @RequestParam("bno") Integer bno,  
+			           Model model){
 		
 		logger.info("detail get");
 		
-		if(bno != EMPTY_BNO){
-			model.addAttribute("todo",service.view(bno));
-		}
+		model.addAttribute("todo",service.viewTodo(bno));
 		
 		logger.info(cri.toString());
 		
-		return "/todo/detail";
 	}	
 	
 	
 
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
 	public String modify(@ModelAttribute("cri") TodoCriteria cri, 
-			@Valid  TodoVO vo, RedirectAttributes redirectAttributes){
+						 @Valid  TodoVO vo, 
+						 RedirectAttributes redirectAttributes){
 		
 		logger.info("modify post");
-		
-		logger.info(vo.toString());
-		
+		logger.info(vo.toString());		
 		logger.info(cri.toString());
 		
-		redirectAttributes.addFlashAttribute("cri", cri);
-		redirectAttributes.addAttribute("result",SUCCESS_MODIFY);
+		service.modifyTodo(vo);
+		
+		
+		readyRedirect(redirectAttributes,cri,SUCCESS_MODIFY, "/todo/list" );
 		return "redirect:/todo/actionResult";
 		
 	}
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute("cri")TodoCriteria cri, @RequestParam("bno") Integer bno,  RedirectAttributes redirectAttributes){
+	public String delete(@ModelAttribute("cri")TodoCriteria cri, 
+			                   @RequestParam("bno") Integer bno,  
+			                   RedirectAttributes redirectAttributes){
 		
 		logger.info("delete post");
-		
-		logger.info(""+bno);
-		
+		logger.info(""+bno);		
 		logger.info(cri.toString());
 		
-		ModelAndView mav = new ModelAndView();
+		service.removeTodo(bno);
 		
-		mav.addObject("result",SUCCESS_DELETE);
 		
-		mav.setViewName("redirect:/todo/actionResult");
-		return mav;
-	}	
+		readyRedirect(redirectAttributes,cri,SUCCESS_DELETE, "/todo/list" );
+
+		return "redirect:/todo/actionResult";
+	}
+	
+	private void readyRedirect(RedirectAttributes redirectAttributes, 
+			                     Object cri, 
+			                     String result, 
+			                     String nextPage){
+		
+		
+		if(cri != null){
+			redirectAttributes.addFlashAttribute("cri", cri);
+		}
+		
+		redirectAttributes.addAttribute("result",result);
+		redirectAttributes.addAttribute("nextPage",nextPage);
+		
+		
+	}
 
 
 

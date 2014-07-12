@@ -34,10 +34,24 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public TodoVO view(Integer bno) throws RuntimeException {
+	public TodoVO viewTodo(Integer bno) throws RuntimeException {
 		// TODO Auto-generated method stub
 		
 		return mapper.readTodo(bno);
+	}
+
+	@Override
+	public void modifyTodo(TodoVO vo) throws RuntimeException {
+		// TODO Auto-generated method stub
+	
+		mapper.updateTodo(vo);
+	}
+
+	@Override
+	public void removeTodo(Integer bno) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+		mapper.deleteTodo(bno);
 	}
 
 	
