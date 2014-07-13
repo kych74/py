@@ -3,6 +3,8 @@ package org.zeroteam.core.board;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /*CREATE TABLE `tbl_board` (
 		  `bno` int(11) NOT NULL AUTO_INCREMENT,
 		  `title` varchar(200) NOT NULL,
@@ -10,6 +12,7 @@ import java.util.Date;
 		  `regdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
 		  `moddate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
 		  `viewcnt` int(11) DEFAULT '0',
+		  `replycnt` int(11) DEFAULT '0',
 		  `writer` varchar(45) NOT NULL,
 		  `delflag` char(1) DEFAULT 'N',
 		  PRIMARY KEY (`bno`)
@@ -19,13 +22,23 @@ public class BoardVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int bno;
+	
+	@NotEmpty
 	private String title;
+	
+	@NotEmpty
 	private String content;
 	private Date regDate;
 	private Date modDate;
 	private int viewcnt;
+	private int replycnt;
+	
+	@NotEmpty
 	private String writer;
+	
 	private String delflag;
+	
+	
 	
 	public int getBno() {
 		return bno;
@@ -63,6 +76,13 @@ public class BoardVO implements Serializable{
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
+	
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	public String getWriter() {
 		return writer;
 	}
@@ -75,6 +95,9 @@ public class BoardVO implements Serializable{
 	public void setDelflag(String delflag) {
 		this.delflag = delflag;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content="

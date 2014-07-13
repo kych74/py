@@ -51,7 +51,7 @@
                                         
                                         <div class="form-group">
                                             <label for="dueDate">Due to</label>
-                                            <sf:input path="dueDate"  type ="date" class="form-control" id="cotent" placeholder="DueDate "/>
+                                            <sf:input path="dueDate"  type ="date" class="form-control" id="dueDate" placeholder="DueDate "/>
                                             <sf:errors path="dueDate" cssClass="error" />
                                         </div>
                                     </div><!-- /.box-body -->

@@ -87,6 +87,7 @@
 <script src="/resources/js/pageMaker.js"></script>
 <script>
 
+
 $(function(){
 	
 	var pageMaker = new PageMaker({totalCount:'${cri.totalCount}', pageno:'${cri.pageno}'});
@@ -97,9 +98,12 @@ $(function(){
 		
 		event.preventDefault();
 		
-		console.log(event.target.innerHTML);
+		console.log(event.target.getAttribute("data-page"));
 		
-		$("#pageno").attr("value", event.target.innerHTML);
+		var pageNum = event.target.getAttribute("data-page");
+		
+		
+		$("#pageno").attr("value", pageNum);
 		
 		$("#form1").submit();
 		

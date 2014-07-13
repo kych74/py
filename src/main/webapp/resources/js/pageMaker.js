@@ -1,13 +1,12 @@
 
 function PageMaker(config){
 	
-	this.pageno = config.pageno = 1;
+	this.pageno = config.pageno;
 	
-	this.perPage = config.perPage = 10; 
+	this.perPage = config.perPage? config.perPage:10; 
 	
-	this.perPageDisplay = config.perPageDisplay = 10;
-	
-	this.pageNums = config.pageNums = 5;
+	this.perPageDisplay = config ? config.perPageDisplay:10;
+
 	
 	this.totalCount = config.totalCount;
 	
@@ -17,10 +16,14 @@ function PageMaker(config){
 
 PageMaker.prototype.calculate = function(){
 	
-	this.firstPage = (Math.floor(this.pageno /this.perPage) * this.perPage) +1;
+	console.log("1-----------", this.pageno);
 	
-	if(this.firstPage !== 1){
-		this.isFirst = false;
+	this.firstPage = (Math.floor((this.pageno -1)/this.perPage) * this.perPage) +1;
+	
+	console.log("2-----------", this.firstPage);
+	
+	if(this.firstPage === 1){
+		this.isFirst = true;
 	}
 	
 	var tempLastPage = this.firstPage + this.perPage - 1;
@@ -56,16 +59,16 @@ PageMaker.prototype.makePage = function(targetId){
 	
 	var str = "";
 	
-	if(this.isFirst){
-		str += "<li><a href='#'>&laquo;</a></li>";
+	if(!this.isFirst){
+		str += "<li><a href='#' data-page="+(this.firstPage -1)+">&laquo;</a></li>";
 	}
 	
 	for(var i = this.firstPage;i <= this.lastPage ; i++){
-		str += "<li><a href='#'>"+i+"</a></li>";
+		str += "<li><a href='#' data-page="+ i +">"+i+"</a></li>";
 	}
 	
 	if(this.hasNext){
-		str += "<li><a href='#'>&raquo;</a></li>";
+		str += "<li><a href='#' data-page="+(this.lastPage +1)+">&raquo;</a></li>";
 	}
 	
 	document.getElementById(targetId).innerHTML = str;

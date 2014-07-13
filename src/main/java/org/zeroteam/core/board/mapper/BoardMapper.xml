@@ -16,10 +16,17 @@
   <select id="listBoard" resultType="org.zeroteam.core.board.BoardVO" 
                          parameterType="org.zeroteam.core.board.BoardCriteria">
   
-  select bno, title, content, dueDate, regDate 
-  from tbl_board
-  where delflag != 'Y'
-  order by bno desc
+  select 
+    bno, title, content, regDate, modDate, 
+    writer, viewcnt, replycnt  
+  from 
+    tbl_board	
+  where 
+    bno > 0 
+    and delflag = 'N'
+    
+  order by 
+    bno desc
   limit #{start}, #{end}
   
   </select>
@@ -36,6 +43,10 @@
   
   select count(bno) 
   from tbl_board
+  
+  where 
+    bno > 0 
+    and delflag = 'N'
    
  
   </select>

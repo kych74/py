@@ -314,7 +314,7 @@
                         </li>
                     
                         <li >
-                            <a href="index.html">
+                            <a href="/board/list">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
